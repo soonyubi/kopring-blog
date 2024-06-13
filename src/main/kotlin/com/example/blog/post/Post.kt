@@ -8,7 +8,7 @@ import jakarta.persistence.Entity
 import java.time.LocalDateTime
 
 @Entity
-class PostEntity(
+class Post(
     title: String,
     content: String,
     information: PostInformation
@@ -42,7 +42,7 @@ data class PostInformation(
     val link: String?,
 
     @Column(nullable = false)
-    val rank: Int
+    val ranking: Int
 )
 
 data class PostUpdateData(

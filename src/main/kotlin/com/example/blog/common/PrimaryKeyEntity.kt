@@ -13,10 +13,10 @@ import java.io.Serializable
 import java.util.Objects
 
 @MappedSuperclass
-abstract class PrimaryKeyEntity : Persistable<UUID> {
+abstract class PrimaryKeyEntity : Persistable<String> {
     @Id
-    @Column(columnDefinition = "uuid")
-    private val id : UUID = UUID.nameUUIDFromBytes(ULID().nextValue().toString().toByteArray())
+    @Column(columnDefinition = "CHAR(36)")
+    private val id : String = ULID().nextValue().toString()
 
     @Transient
     private var _isNew : Boolean = true
