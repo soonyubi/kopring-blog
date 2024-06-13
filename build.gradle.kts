@@ -31,6 +31,7 @@ dependencies {
 	testImplementation("org.springframework.security:spring-security-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	implementation("mysql:mysql-connector-java:8.0.32")
+	implementation("de.huxhorn.sulky:de.huxhorn.sulky.ulid:8.2.0")
 }
 
 kotlin {
