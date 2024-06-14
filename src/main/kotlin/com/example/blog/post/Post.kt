@@ -1,17 +1,16 @@
 package com.example.blog.post
 
 import com.example.blog.common.PrimaryKeyEntity
-import jakarta.persistence.Column
-import jakarta.persistence.Embeddable
-import jakarta.persistence.Embedded
-import jakarta.persistence.Entity
+import com.example.blog.user.User
+import jakarta.persistence.*
 import java.time.LocalDateTime
 
 @Entity
 class Post(
     title: String,
     content: String,
-    information: PostInformation
+    information: PostInformation,
+    user : User
 ) : PrimaryKeyEntity() {
     @Column(nullable = false)
     var createdAt : LocalDateTime = LocalDateTime.now()
@@ -25,6 +24,11 @@ class Post(
     var content: String = content
         protected set
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(nullable = false)
+    var writer : User = user
+        protected  set
+
     @Embedded
     var information : PostInformation = information
         protected set
@@ -33,6 +37,10 @@ class Post(
         this.title=data.title
         this.information=data.information
         this.content=data.content
+    }
+
+    init {
+        writer.writePost(this)
     }
 }
 
