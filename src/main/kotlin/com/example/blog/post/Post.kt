@@ -11,7 +11,7 @@ class Post(
     title: String,
     content: String,
     information: PostInformation,
-    user : User,
+    writer : User,
     tags: Set<Tag>
 ) : PrimaryKeyEntity() {
     @Column(nullable = false)
@@ -28,7 +28,7 @@ class Post(
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(nullable = false)
-    var writer : User = user
+    var writer : User = writer
         protected  set
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
